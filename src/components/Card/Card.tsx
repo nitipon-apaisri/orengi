@@ -1,12 +1,22 @@
 import React from "react";
 import { Typography, Divider } from "antd";
 import { cardProps } from "../../@types/types";
+
 const { Title } = Typography;
-const Card: React.FC<cardProps> = ({ children, title, width, bordered }) => {
+const Card: React.FC<cardProps> = ({ children, title, width, bordered, boxShadow, className }) => {
+    const styles: React.CSSProperties = {
+        width: width !== undefined ? width : "100%",
+        border: bordered !== undefined ? (bordered ? "1px solid #e8e8e8" : "") : "1px solid #e8e8e8",
+        boxShadow: boxShadow !== undefined ? (boxShadow ? "0px 8px 16px -6px rgba(0, 0, 0, 0.02)" : "") : "0px 8px 16px -6px rgba(0, 0, 0, 0.02)",
+    };
     return (
-        <div className="card" style={{ width: width !== undefined ? width : "100%", border: bordered !== undefined ? (bordered ? "0.5px solid #e8e8e8" : "") : "0.5px solid #e8e8e8" }}>
-            <Title level={5}>{title}</Title>
-            <Divider />
+        <div className={`card ${className}`} style={styles}>
+            {title && (
+                <>
+                    <Title level={4}>{title}</Title>
+                    <Divider />
+                </>
+            )}
             {children}
         </div>
     );

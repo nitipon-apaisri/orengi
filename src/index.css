@@ -1,6 +1,6 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap");
 body {
     margin: 0;
-    background-color: #fcfcfd;
 }
 h1,
 h2,
@@ -10,15 +10,26 @@ h5,
 h6,
 p,
 hr {
+    font-family: "Noto Sans KR", sans-serif !important;
     margin: 0;
     padding: 0;
 }
-
+.ant-layout {
+    background-color: #fcfcfd !important;
+}
 .ant-layout-header {
+    background-color: #fff !important;
     padding: 0 !important;
 }
 .ant-divider {
     margin: 1px 0 !important;
+}
+.ant-menu-item-selected {
+    font-weight: bolder !important;
+    color: #ff9100 !important;
+}
+.ant-menu-item-selected::after {
+    border-bottom: none !important;
 }
 .container {
     width: 1690px;
@@ -31,5 +42,19 @@ hr {
     padding: 2rem;
     border-radius: 1rem;
     background-color: #fff;
-    box-shadow: 0px 8px 16px -6px rgba(0, 0, 0, 0.02);
+}
+.card_stats {
+    margin: 1.5rem 0 0 0;
+}
+.search_fuction {
+    margin: 1.5rem 0 0 0;
+}
+.search_fuction .app-title {
+    text-align: center;
+}
+.title-highlight {
+    color: #ff9100;
+}
+.gas-price-refresh {
+    text-align: center;
 }
