@@ -43,13 +43,14 @@ hr {
     border-radius: 1rem;
     background-color: #fff;
 }
-.card_stats {
+.card-stats {
     margin: 1.5rem 0 0 0;
 }
-.search_fuction {
-    margin: 1.5rem 0 0 0;
+.hero,
+.stats {
+    margin: 2.5rem 0;
 }
-.search_fuction .app-title {
+.hero .app-title {
     text-align: center;
 }
 .title-highlight {
@@ -57,4 +58,8 @@ hr {
 }
 .gas-price-refresh {
     text-align: center;
+}
+.search-function {
+    max-width: 480px;
+    margin: 0 auto;
 }
