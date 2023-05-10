@@ -42,6 +42,7 @@ hr {
     padding: 2rem;
     border-radius: 1rem;
     background-color: #fff;
+    height: 100%;
 }
 .card-stats {
     margin: 1.5rem 0 0 0;
@@ -56,10 +57,28 @@ hr {
 .title-highlight {
     color: #ff9100;
 }
-.gas-price-refresh {
+.gas-price-card {
+    position: relative;
+}
+.gas-price-card .wrapper {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     text-align: center;
+}
+.gas-price-refresh {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transform: translate(-40px, -40px);
+    text-align: right;
 }
 .search-function {
     max-width: 480px;
     margin: 0 auto;
+}
+.stat {
+    margin: 1rem 0 0 0;
+    text-align: center;
 }
