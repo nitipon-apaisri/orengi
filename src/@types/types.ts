@@ -17,19 +17,15 @@ interface ethereumAccount {
     };
 }
 interface ethereumStats {
-    stats: {
-        supply: valueFormat;
-        staking: valueFormat;
-        burntFees: valueFormat;
-        totalWithdrawn: valueFormat;
-        totalNodes: valueFormat;
-    };
+    supply: valueFormat;
+    staking: valueFormat;
+    burntFees: valueFormat;
+    totalWithdrawn: valueFormat;
+    totalNodes: valueFormat;
 }
 interface ethereumGasFee {
-    gas: {
-        average: valueFormat;
-        lastBlock: number;
-    };
+    average: valueFormat;
+    lastBlock: number;
 }
 interface valueFormat {
     value: number;

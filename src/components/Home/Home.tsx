@@ -3,11 +3,13 @@ import { useCallback, useContext, useEffect, useState } from "react";
 import Card from "../Card/Card";
 import { EthereumContext } from "../../contexts/EthereumContext";
 import { EthereumContextType, ethereumStats, ethereumGasFee } from "../../@types/types";
+import { numberFormator } from "../../utils/numberFormator";
 const { Title, Text } = Typography;
 const { Search } = Input;
 const Home = () => {
+    const defaultTimer = 15;
     const { getStats, getGasFee } = useContext(EthereumContext) as EthereumContextType;
-    const [refreshTime, setRefreshTime] = useState<number>(10);
+    const [refreshTime, setRefreshTime] = useState<number>(defaultTimer);
     const [stats, setStats] = useState<ethereumStats>();
     const [gasFee, setGasFee] = useState<ethereumGasFee>();
     const onSearch = (value: string) => console.log(value);
@@ -33,7 +35,7 @@ const Home = () => {
             setRefreshTime(refreshTime - 1);
         }, 1000);
         if (refreshTime === 0) {
-            setRefreshTime(10);
+            setRefreshTime(defaultTimer);
             fetchGasFee().catch((err) => console.log(err));
         }
         return () => clearInterval(interval);
@@ -62,8 +64,8 @@ const Home = () => {
                                             <Divider />
                                             <div className="stat">
                                                 <Space>
-                                                    <Text>{`~ ${Number(stats?.stats.supply.value).toFixed(0)}`}</Text>
-                                                    <Text>{stats?.stats.supply.unit}</Text>
+                                                    <Text>{`~ ${numberFormator(Number(stats?.supply.value).toFixed(0))}`}</Text>
+                                                    <Text>{stats?.supply.unit}</Text>
                                                 </Space>
                                             </div>
                                         </Card>
@@ -75,8 +77,8 @@ const Home = () => {
                                             <Divider />
                                             <div className="stat">
                                                 <Space>
-                                                    <Text>{`~ ${Number(stats?.stats.burntFees.value).toFixed(0)}`}</Text>
-                                                    <Text>{stats?.stats.burntFees.unit}</Text>
+                                                    <Text>{`~ ${numberFormator(Number(stats?.burntFees.value).toFixed(0))}`}</Text>
+                                                    <Text>{stats?.burntFees.unit}</Text>
                                                 </Space>
                                             </div>
                                         </Card>
@@ -87,8 +89,8 @@ const Home = () => {
                                             <Divider />
                                             <div className="stat">
                                                 <Space>
-                                                    <Text>{stats?.stats.totalNodes.value}</Text>
-                                                    <Text>{stats?.stats.totalNodes.unit}</Text>
+                                                    <Text>{numberFormator(Number(stats?.totalNodes.value))}</Text>
+                                                    <Text>{stats?.totalNodes.unit}</Text>
                                                 </Space>
                                             </div>
                                         </Card>
@@ -103,13 +105,13 @@ const Home = () => {
                                 <Space direction="vertical">
                                     <Space>
                                         <Title level={4} style={{ marginBottom: 0 }}>
-                                            {gasFee?.gas.average.value}
+                                            {gasFee?.average.value}
                                         </Title>
                                         <Title level={4} style={{ marginBottom: 0 }}>
-                                            {gasFee?.gas.average.unit}
+                                            {gasFee?.average.unit}
                                         </Title>
                                     </Space>
-                                    <Text type="secondary">{`Last block: ${gasFee?.gas.lastBlock}`}</Text>
+                                    <Text type="secondary">{`Last block: ${gasFee?.lastBlock}`}</Text>
                                 </Space>
                             </div>
 

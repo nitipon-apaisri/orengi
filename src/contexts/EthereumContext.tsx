@@ -12,12 +12,12 @@ const EthereumProvider = ({ children }: contextChildren) => {
     };
     const getStats = async () => {
         const res = await ethereumApis.getEthereumStats();
-        const data = await res.data;
+        const data = await res.data.stats;
         return data;
     };
     const getGasFee = async () => {
         const res = await ethereumApis.getEthereumGasFee();
-        const data = await res.data;
+        const data = await res.data.gas;
         return data;
     };
     return <EthereumContext.Provider value={{ account, getAccount, getStats, getGasFee }}>{children}</EthereumContext.Provider>;
