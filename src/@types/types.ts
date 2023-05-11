@@ -9,12 +9,10 @@ interface EthereumContextType {
     getGasFee: () => void;
 }
 interface ethereumAccount {
-    account: {
-        address: string;
-        balance: valueFormat;
-        transactions: { sent: unknown; received: unknown };
-        tokens: Array<tokenERC20>;
-    };
+    address: string;
+    balance: valueFormat;
+    transactions: { sent: unknown; received: unknown };
+    tokens: Array<tokenERC20>;
 }
 interface ethereumStats {
     supply: valueFormat;

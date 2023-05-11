@@ -4,6 +4,7 @@ import Card from "../Card/Card";
 import { EthereumContext } from "../../contexts/EthereumContext";
 import { EthereumContextType, ethereumStats, ethereumGasFee } from "../../@types/types";
 import { numberFormator } from "../../utils/numberFormator";
+import Loader from "../Loader/Loader";
 const { Title, Text } = Typography;
 const { Search } = Input;
 const Home = () => {
@@ -12,6 +13,7 @@ const Home = () => {
     const [refreshTime, setRefreshTime] = useState<number>(defaultTimer);
     const [stats, setStats] = useState<ethereumStats>();
     const [gasFee, setGasFee] = useState<ethereumGasFee>();
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const onSearch = (value: string) => console.log(value);
 
     const fetchStats = useCallback(async () => {
@@ -40,7 +42,11 @@ const Home = () => {
         }
         return () => clearInterval(interval);
     }, [refreshTime, fetchGasFee]);
-
+    useEffect(() => {
+        if (stats && gasFee) {
+            setIsLoaded(true);
+        }
+    }, [stats, gasFee]);
     return (
         <>
             <div className="hero">
@@ -52,76 +58,82 @@ const Home = () => {
                 </div>
             </div>
             <Divider />
-            <div className="stats">
-                <Row gutter={16}>
-                    <Col flex={3}>
-                        <Card title="Stats">
-                            <div className="card-stats">
-                                <Row gutter={8}>
-                                    <Col span={8}>
-                                        <Card bordered={true} boxShadow={false}>
-                                            <Title level={5}>Supply</Title>
-                                            <Divider />
-                                            <div className="stat">
-                                                <Space>
-                                                    <Text>{`~ ${numberFormator(Number(stats?.supply.value).toFixed(0))}`}</Text>
-                                                    <Text>{stats?.supply.unit}</Text>
-                                                </Space>
-                                            </div>
-                                        </Card>
-                                    </Col>
+            {isLoaded ? (
+                <div className="stats">
+                    <Row gutter={16}>
+                        <Col flex={3}>
+                            <Card title="Stats">
+                                <div className="card-stats">
+                                    <Row gutter={8}>
+                                        <Col span={8}>
+                                            <Card bordered={true} boxShadow={false}>
+                                                <Title level={5}>Supply</Title>
+                                                <Divider />
+                                                <div className="stat">
+                                                    <Space>
+                                                        <Text>{`~ ${numberFormator(Number(stats?.supply.value).toFixed(0))}`}</Text>
+                                                        <Text>{stats?.supply.unit}</Text>
+                                                    </Space>
+                                                </div>
+                                            </Card>
+                                        </Col>
 
-                                    <Col span={8}>
-                                        <Card bordered={true} boxShadow={false}>
-                                            <Title level={5}>Burned</Title>
-                                            <Divider />
-                                            <div className="stat">
-                                                <Space>
-                                                    <Text>{`~ ${numberFormator(Number(stats?.burntFees.value).toFixed(0))}`}</Text>
-                                                    <Text>{stats?.burntFees.unit}</Text>
-                                                </Space>
-                                            </div>
-                                        </Card>
-                                    </Col>
-                                    <Col span={8}>
-                                        <Card bordered={true} boxShadow={false}>
-                                            <Title level={5}>Nodes</Title>
-                                            <Divider />
-                                            <div className="stat">
-                                                <Space>
-                                                    <Text>{numberFormator(Number(stats?.totalNodes.value))}</Text>
-                                                    <Text>{stats?.totalNodes.unit}</Text>
-                                                </Space>
-                                            </div>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col flex={2}>
-                        <Card title="Gas Price ( Average )" className="gas-price-card">
-                            <div className="wrapper">
-                                <Space direction="vertical">
-                                    <Space>
-                                        <Title level={4} style={{ marginBottom: 0 }}>
-                                            {gasFee?.average.value}
-                                        </Title>
-                                        <Title level={4} style={{ marginBottom: 0 }}>
-                                            {gasFee?.average.unit}
-                                        </Title>
+                                        <Col span={8}>
+                                            <Card bordered={true} boxShadow={false}>
+                                                <Title level={5}>Burned</Title>
+                                                <Divider />
+                                                <div className="stat">
+                                                    <Space>
+                                                        <Text>{`~ ${numberFormator(Number(stats?.burntFees.value).toFixed(0))}`}</Text>
+                                                        <Text>{stats?.burntFees.unit}</Text>
+                                                    </Space>
+                                                </div>
+                                            </Card>
+                                        </Col>
+                                        <Col span={8}>
+                                            <Card bordered={true} boxShadow={false}>
+                                                <Title level={5}>Nodes</Title>
+                                                <Divider />
+                                                <div className="stat">
+                                                    <Space>
+                                                        <Text>{numberFormator(Number(stats?.totalNodes.value))}</Text>
+                                                        <Text>{stats?.totalNodes.unit}</Text>
+                                                    </Space>
+                                                </div>
+                                            </Card>
+                                        </Col>
+                                    </Row>
+                                </div>
+                            </Card>
+                        </Col>
+                        <Col flex={2}>
+                            <Card title="Gas Price ( Average )" className="gas-price-card">
+                                <div className="wrapper">
+                                    <Space direction="vertical">
+                                        <Space>
+                                            <Title level={4} style={{ marginBottom: 0 }}>
+                                                {gasFee?.average.value}
+                                            </Title>
+                                            <Title level={4} style={{ marginBottom: 0 }}>
+                                                {gasFee?.average.unit}
+                                            </Title>
+                                        </Space>
+                                        <Text type="secondary">{`Last block: ${gasFee?.lastBlock}`}</Text>
                                     </Space>
-                                    <Text type="secondary">{`Last block: ${gasFee?.lastBlock}`}</Text>
-                                </Space>
-                            </div>
+                                </div>
 
-                            <div className="gas-price-refresh">
-                                <Text>Refresh in: {refreshTime}</Text>
-                            </div>
-                        </Card>
-                    </Col>
-                </Row>
-            </div>
+                                <div className="gas-price-refresh">
+                                    <Text>Refresh in: {refreshTime}</Text>
+                                </div>
+                            </Card>
+                        </Col>
+                    </Row>
+                </div>
+            ) : (
+                <div className="loader">
+                    <Loader />
+                </div>
+            )}
         </>
     );
 };
