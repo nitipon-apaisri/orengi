@@ -4,8 +4,12 @@ import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomeView from "./views/home/HomeView";
 import AppLayout from "./layout/Layout";
+import AccountView from "./views/account/AccountView";
 
-const router = createBrowserRouter([{ path: "/", element: <HomeView /> }]);
+const router = createBrowserRouter([
+    { path: "/", element: <HomeView /> },
+    { path: "/account/:address", element: <AccountView /> },
+]);
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
     <React.StrictMode>
         <AppLayout>

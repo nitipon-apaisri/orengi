@@ -5,16 +5,20 @@ import { EthereumContext } from "../../contexts/EthereumContext";
 import { EthereumContextType, ethereumStats, ethereumGasFee } from "../../@types/types";
 import { numberFormator } from "../../utils/numberFormator";
 import Loader from "../Loader/Loader";
+import { useNavigate } from "react-router-dom";
 const { Title, Text } = Typography;
 const { Search } = Input;
 const Home = () => {
     const defaultTimer = 15;
+    const navigate = useNavigate();
     const { getStats, getGasFee } = useContext(EthereumContext) as EthereumContextType;
     const [refreshTime, setRefreshTime] = useState<number>(defaultTimer);
     const [stats, setStats] = useState<ethereumStats>();
     const [gasFee, setGasFee] = useState<ethereumGasFee>();
     const [isLoaded, setIsLoaded] = useState<boolean>(false);
-    const onSearch = (value: string) => console.log(value);
+    const onSearch = (value: string) => {
+        navigate(`/account/${value}`);
+    };
 
     const fetchStats = useCallback(async () => {
         const res = await getStats();
