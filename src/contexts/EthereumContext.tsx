@@ -8,7 +8,7 @@ const EthereumProvider = ({ children }: contextChildren) => {
     const [account, setAccount] = useState<ethereumAccount>();
     const getAccount = async (address: string) => {
         const res = await ethereumApis.getEthereumAccount(address);
-        setAccount(res.data);
+        setAccount(res.data.account);
     };
     const getStats = async () => {
         const res = await ethereumApis.getEthereumStats();

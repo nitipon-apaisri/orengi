@@ -1,9 +1,9 @@
-const AccountView = () => {
-    return (
-        <div>
-            <h1>AccountView</h1>
-        </div>
-    );
-};
+import Account from "../../components/Account/Account";
+import { EthereumProvider } from "../../contexts/EthereumContext";
 
+const AccountView = () => (
+    <EthereumProvider>
+        <Account />
+    </EthereumProvider>
+);
 export default AccountView;
