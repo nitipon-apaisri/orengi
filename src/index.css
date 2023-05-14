@@ -82,7 +82,7 @@ hr {
     margin: 1rem 0 0 0;
     text-align: center;
 }
-.loader {
+.data-status {
     position: absolute;
     top: 50%;
     left: 50%;
