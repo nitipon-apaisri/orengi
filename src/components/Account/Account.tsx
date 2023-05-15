@@ -1,25 +1,46 @@
-import { useCallback, useContext, useEffect } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { EthereumContext } from "../../contexts/EthereumContext";
 import { EthereumContextType } from "../../@types/types";
 import { useParams } from "react-router-dom";
+import Loader from "../Loader/Loader";
+import EmptyDataDisplay from "../Empty/Empty";
 
 const Account = () => {
     const { account, getAccount } = useContext(EthereumContext) as EthereumContextType;
     const { address } = useParams();
+    const [isLoaded, setIsLoaded] = useState<boolean>(false);
     const fetchAccount = useCallback(async () => {
         await getAccount(address as string);
     }, [getAccount, address]);
     useEffect(() => {
         if (account === undefined || account.address !== address) {
-            fetchAccount().catch((err) => console.log(err));
+            fetchAccount().catch((err) => {
+                setIsLoaded(true);
+                console.log(err);
+            });
         }
+        if (account !== undefined && account.address === address) setIsLoaded(true);
     }, [account, address, fetchAccount]);
     return (
         <>
-            {console.log(account)}
-            <div>
-                <h1>Account</h1>
-            </div>
+            {(() => {
+                if (!isLoaded) {
+                    return <Loader />;
+                }
+                if (isLoaded && account === undefined) {
+                    return <EmptyDataDisplay />;
+                }
+                if (isLoaded && account !== undefined) {
+                    console.log(account);
+                    return (
+                        <>
+                            <div>
+                                <h1>Account</h1>
+                            </div>
+                        </>
+                    );
+                }
+            })()}
         </>
     );
 };

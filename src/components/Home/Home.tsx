@@ -72,18 +72,10 @@ const Home = () => {
             <Divider />
             {(() => {
                 if (!isLoaded) {
-                    return (
-                        <div className="data-status">
-                            <Loader />
-                        </div>
-                    );
+                    return <Loader />;
                 }
                 if (isLoaded && !stats && !gasFee) {
-                    return (
-                        <div className="data-status">
-                            <EmptyDataDisplay />
-                        </div>
-                    );
+                    return <EmptyDataDisplay />;
                 }
                 if (isLoaded && stats && gasFee) {
                     return (

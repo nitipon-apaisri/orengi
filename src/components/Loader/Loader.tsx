@@ -1,6 +1,10 @@
 import { Spin } from "antd";
 const Loader = () => {
-    return <Spin />;
+    return (
+        <div className="data-status">
+            <Spin />
+        </div>
+    );
 };
 
 export default Loader;
