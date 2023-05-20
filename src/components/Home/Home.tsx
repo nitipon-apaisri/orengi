@@ -35,9 +35,16 @@ const Home = () => {
     useEffect(() => {
         document.title = "ORENJI | オレンジ";
         fetchStats().catch((err) => {
+            setTimeout(() => {
+                setIsLoaded(true);
+            }, 500);
             console.log(err);
         });
         fetchGasFee().catch((err) => {
+            setTimeout(() => {
+                setIsLoaded(true);
+            }, 500);
+
             console.log(err);
         });
     }, [fetchStats, fetchGasFee]);
