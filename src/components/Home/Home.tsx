@@ -73,7 +73,7 @@ const Home = () => {
                     OREN<span className="title-highlight">JI</span> | オレン<span className="title-highlight">ジ</span>{" "}
                 </Title>
                 <div className="search-function">
-                    <Search placeholder="Search" allowClear enterButton="Search" size="large" onPressEnter={(v) => onSearch((v.target as HTMLInputElement).value)} />
+                    <Search placeholder="Search" allowClear enterButton="Search" size="large" onPressEnter={(v) => onSearch((v.target as HTMLInputElement).value)} onSearch={(v) => onSearch(v)} />
                 </div>
             </div>
             <Divider />
