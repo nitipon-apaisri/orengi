@@ -10,11 +10,11 @@ const Card: React.FC<cardProps> = ({ children, title, width, bordered, boxShadow
         boxShadow: boxShadow !== undefined ? (boxShadow ? "0px 8px 16px -6px rgba(0, 0, 0, 0.02)" : "") : "0px 8px 16px -6px rgba(0, 0, 0, 0.02)",
     };
     return (
-        <div className={`card ${className}`} style={styles}>
+        <div className={`card ${className ? className : ""}`} style={styles}>
             {title && (
                 <>
                     <Title level={4}>{title}</Title>
-                    <Divider />
+                    <Divider style={{ margin: "1px 0" }} />
                 </>
             )}
             {children}

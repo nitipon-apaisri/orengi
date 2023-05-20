@@ -95,7 +95,7 @@ const Home = () => {
                                                 <Col span={8}>
                                                     <Card bordered={true} boxShadow={false}>
                                                         <Title level={5}>Supply</Title>
-                                                        <Divider />
+                                                        <Divider className="card-stat-divider" />
                                                         <div className="stat">
                                                             <Space>
                                                                 <Text>{`~ ${numberFormator(Number(stats?.supply.value).toFixed(0))}`}</Text>
@@ -108,7 +108,7 @@ const Home = () => {
                                                 <Col span={8}>
                                                     <Card bordered={true} boxShadow={false}>
                                                         <Title level={5}>Burned</Title>
-                                                        <Divider />
+                                                        <Divider className="card-stat-divider" />
                                                         <div className="stat">
                                                             <Space>
                                                                 <Text>{`~ ${numberFormator(Number(stats?.burntFees.value).toFixed(0))}`}</Text>
@@ -120,7 +120,7 @@ const Home = () => {
                                                 <Col span={8}>
                                                     <Card bordered={true} boxShadow={false}>
                                                         <Title level={5}>Nodes</Title>
-                                                        <Divider />
+                                                        <Divider className="card-stat-divider" />
                                                         <div className="stat">
                                                             <Space>
                                                                 <Text>{numberFormator(Number(stats?.totalNodes.value))}</Text>

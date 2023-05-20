@@ -21,7 +21,7 @@ hr {
     background-color: #fff !important;
     padding: 0 !important;
 }
-.ant-divider {
+.ant-divider.card-stat-divider {
     margin: 1px 0 !important;
 }
 .ant-menu-item-selected {

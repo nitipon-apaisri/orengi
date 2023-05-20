@@ -4,6 +4,7 @@ import { EthereumContextType } from "../../@types/types";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import EmptyDataDisplay from "../Empty/Empty";
+import { Divider } from "antd";
 
 const Account = () => {
     const { account, getAccount } = useContext(EthereumContext) as EthereumContextType;
@@ -35,7 +36,8 @@ const Account = () => {
                     return (
                         <>
                             <div>
-                                <h1>Account</h1>
+                                <h1>{`Account: ${address}`} </h1>
+                                <Divider style={{ margin: "16px 0" }} />
                             </div>
                         </>
                     );
