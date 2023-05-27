@@ -7,6 +7,7 @@ interface EthereumContextType {
     getAccount: (address: string) => void;
     getStats: () => void;
     getGasFee: () => void;
+    resolveName: (name: string) => void;
 }
 interface ethereumAccount {
     address: string;

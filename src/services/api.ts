@@ -15,6 +15,10 @@ class EthereumApis {
         const res = this.ethereumApiUrl.get(`/ethereum/gas`);
         return res;
     }
+    async resolveName(name: string) {
+        const res = this.ethereumApiUrl.get(`/ethereum/ens/resolveName?ens=${name}`);
+        return res;
+    }
 }
 
 export { EthereumApis };
