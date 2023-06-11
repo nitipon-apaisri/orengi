@@ -34,4 +34,21 @@ interface tokenERC20 {
     name: string;
     balance: string;
 }
-export type { EthereumContextType, ethereumAccount, layoutProps, cardProps, contextChildren, ethereumStats, ethereumGasFee };
+interface graphNode {
+    id: string;
+    name: string;
+    symbolSize: number;
+    x?: number | undefined;
+    y?: number | undefined;
+    value?: number;
+}
+interface graphLink {
+    source: string;
+    target: string;
+    value?: number;
+}
+interface transaction {
+    nodes: Array<graphNode>;
+    links: Array<graphLink>;
+}
+export type { EthereumContextType, ethereumAccount, layoutProps, cardProps, contextChildren, ethereumStats, ethereumGasFee, transaction, graphNode, graphLink };
