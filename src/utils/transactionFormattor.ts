@@ -21,15 +21,9 @@ const transactionFormatter = () => {
                 value: transaction.transaction.value.value,
             };
             const duplicate = transactions.nodes.find((n) => n.name === node.name);
-            // console.log(duplicate);
-
             if (duplicate === undefined) {
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore: Object is possibly 'null'.
-                node.x = transactions.nodes[0].x + 300;
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-ignore: Object is possibly 'null'.
-                node.y = transactions.nodes.length < 2 ? transactions.nodes[0].y + -150 : transactions.nodes[transactions.nodes.length - 1].y + 50;
+                node.x = 500;
+                node.y = Math.random() * 500;
                 transactions.nodes.push(node);
                 transactions.links.push(link);
             }
